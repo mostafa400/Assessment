@@ -1,0 +1,43 @@
+{
+  "HomePage": {
+    "title": "مرحباً",
+    "description": "هذا تطبيق تجريبي"
+  },
+  "Navigation": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "practice": "الممارسة",
+    "services": "الخدمات",
+    "blog": "المدونة",
+    "team": "فريقنا",
+    "contact": "اتصل بنا"
+  },
+  "Services": {
+    "legalconsultation": "خدمات الاستشارات القانونية",
+    "foreigninvestment": "خدمات الاستثمار الأجنبي",
+    "contracts": "العقود",
+    "notarization": "التوثيق",
+    "insurance": "التأمين",
+    "defensecases": "...والدفاع في جميع القضايا",
+    "banksfinancial": "البنوك والمؤسسات المالية",
+    "corporategovernance": "خدمات حوكمة الشركات",
+    "companiesliquidation": "تصفية الشركات",
+    "internalregulations": "اللوائح الداخلية للشركات",
+    "companiesinstitutions": "خدمات للشركات والمؤسسات",
+    "arbitration": "التحكيم",
+    "intellectualproperty": "الملكية الفكرية",
+    "corporaterestructuring": "إعادة هيكلة الشركات وإعادة تنظيمها",
+    "establishingcompanies": "تأسيس الشركات الوطنية والأجنبية",
+    "commercialagencies": "الوكالات التجارية",
+    "vision2030": "دعم رؤية 2030",
+    "estates": "العقارات"
+  },
+  "Header": {
+    "bookMeeting": "حجز اجتماع",
+    "searchPlaceholder": "ابحث في الصفحات، الخدمات..."
+  },
+  "Language": {
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  }
+}

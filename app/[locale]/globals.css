@@ -88,3 +88,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+[dir="rtl"] {
+  /* RTL-specific overrides */
+  .some-element {
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+[dir="rtl"] {
+  /* RTL-specific overrides */
+  .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+  .text-right {
+    text-align: left;
+  }
+}

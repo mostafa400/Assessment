@@ -1,0 +1,43 @@
+{
+  "HomePage": {
+    "title": "Welcome",
+    "description": "This is a demo application"
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "practice": "Practice",
+    "services": "Services",
+    "blog": "Blog",
+    "team": "Our Team",
+    "contact": "Contact Us"
+  },
+  "Services": {
+    "legalconsultation": "Legal Consultation Services",
+    "foreigninvestment": "Foreign Investment Services",
+    "contracts": "Contracts",
+    "notarization": "Notarization",
+    "insurance": "Insurance",
+    "defensecases": "...and Defense in All Cases",
+    "banksfinancial": "Banks and Financial Institutions",
+    "corporategovernance": "Corporate Governance Services",
+    "companiesliquidation": "Companies Liquidation",
+    "internalregulations": "Internal Regulations for Companies",
+    "companiesinstitutions": "Services for Companies and Institutions",
+    "arbitration": "Arbitration",
+    "intellectualproperty": "Intellectual Property",
+    "corporaterestructuring": "Corporate Restructuring and Reorganization",
+    "establishingcompanies": "Establishing National and Foreign Companies",
+    "commercialagencies": "Commercial Agencies",
+    "vision2030": "Supporting Vision 2030",
+    "estates": "Estates"
+  },
+  "Header": {
+    "bookMeeting": "Book a Meeting",
+    "searchPlaceholder": "Search pages, services..."
+  },
+  "Language": {
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}

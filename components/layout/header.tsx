@@ -2,10 +2,11 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter as useNextRouter } from "next/navigation"
 import { Search, Menu, X, ChevronDown, Globe, Calendar } from "lucide-react"
+import { useTranslations } from 'next-intl';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,7 +14,29 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [currentLanguage, setCurrentLanguage] = useState("EN")
-  const router = useRouter()
+  const nextRouter = useNextRouter()
+
+  // const toggleLanguage = () => {
+  //   const newLocale = currentLanguage === "EN" ? "ar" : "en"
+  //   setCurrentLanguage(newLocale === "ar" ? "AR" : "EN")
+  //   // Refresh the page to apply the new locale
+  //   window.location.href = `/${newLocale}${window.location.pathname.replace(/^\/(en|ar)/, '')}`
+  // }
+
+  // Add this useEffect at the top of the component
+useEffect(() => {
+  const locale = window.location.pathname.split('/')[1] || 'en'
+  setCurrentLanguage(locale === 'ar' ? 'AR' : 'EN')
+}, [])
+
+// Modified toggle function
+const toggleLanguage = () => {
+  const newLocale = currentLanguage === 'EN' ? 'ar' : 'en'
+  window.location.href = `/${newLocale}${window.location.pathname.replace(/^\/(en|ar)/, '')}`
+}
+
+
+  const t = useTranslations()
 
   const navigationLinks = [
     { name: "Home", href: "/" },
@@ -79,9 +102,6 @@ export default function Header() {
     },
   ]
 
-  const toggleLanguage = () => {
-    setCurrentLanguage(currentLanguage === "EN" ? "AR" : "EN")
-  }
 
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen)
@@ -99,7 +119,7 @@ export default function Header() {
       )
 
       if (match) {
-        router.push(match.href)
+        nextRouter.push(match.href)
         setIsSearchOpen(false)
         setSearchQuery("")
       }
@@ -139,7 +159,11 @@ export default function Header() {
                 href={link.href}
                 className="font-medium text-white hover:text-amber-200 transition-colors duration-200"
               >
-                {link.name}
+                
+                {t(`Navigation.${
+                  link.name === 'About Us' ? 'about' : 
+                  link.name.toLowerCase().replace(' ', '')
+                }`)}
               </Link>
             ))}
 
@@ -149,7 +173,7 @@ export default function Header() {
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
                 className="flex items-center font-medium text-white hover:text-amber-200 transition-colors duration-200"
               >
-                Services
+                {t('Navigation.services')}
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
 
@@ -170,7 +194,8 @@ export default function Header() {
                               className="block text-white hover:text-amber-200 transition-colors duration-200 text-sm leading-relaxed py-1"
                               onClick={() => setIsServicesOpen(false)}
                             >
-                              {service.name}
+                              {/* {service.name} */}
+                              {t(`Services.${service.name.toLowerCase().replace(/[^a-z]/g, '')}`)}
                             </Link>
                           ))}
                         </div>
@@ -221,7 +246,7 @@ export default function Header() {
                         <button
                           key={index}
                           onClick={() => {
-                            router.push(suggestion.href)
+                            nextRouter.push(suggestion.href)
                             setIsSearchOpen(false)
                             setSearchQuery("")
                           }}
@@ -242,7 +267,7 @@ export default function Header() {
               style={{ backgroundColor: "#643F2E" }}
             >
               <Calendar className="h-4 w-4" />
-              <span className="font-medium">Book a Meeting</span>
+              <span className="font-medium">{t('Header.bookMeeting')}</span>
             </Link>
 
             <button
@@ -250,7 +275,9 @@ export default function Header() {
               className="flex items-center space-x-1 px-3 py-1 border border-white text-white rounded-md transition-colors duration-200 hover:bg-white hover:text-gray-900"
             >
               <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">{currentLanguage}</span>
+              <span className="text-sm font-medium">
+               {currentLanguage === 'EN' ? t('Language.english') : t('Language.arabic')}
+                </span>
             </button>
 
             {/* Mobile Menu Button */}
@@ -285,7 +312,10 @@ export default function Header() {
                       className="block px-4 py-2 text-white hover:text-amber-200 hover:bg-opacity-20 hover:bg-white rounded-md transition-colors duration-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      {link.name}
+                     {t(`Navigation.${
+                  link.name === 'About Us' ? 'about' : 
+                  link.name.toLowerCase().replace(' ', '')
+                      }`)}
                     </Link>
                   ))}
 

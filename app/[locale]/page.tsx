@@ -4,7 +4,13 @@ import HeroCarousel from "@/components/sections/hero-carousel"
 import TeamCarousel from "@/components/sections/team-carousel"
 import TestimonialsCarousel from "@/components/sections/testimonials-carousel"
 
+import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/navigation';
+import React from 'react';
+import  '@/styles/globals.css';
+
 export default function HomePage() {
+  const t = useTranslations('HomePage');
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
