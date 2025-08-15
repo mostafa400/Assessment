@@ -39,5 +39,34 @@
   "Language": {
     "english": "English",
     "arabic": "Arabic"
-  }
+  },
+  "Footer": {
+    "contactUs": "Contact Us",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "followUs": "Follow Us"
+  },
+  
+  "Search": {
+    "suggestions": {
+      "home": ["Home", "Homepage", "Main Page"],
+      "about": ["About Us", "About", "Company"],
+      "team": ["Team", "Lawyers", "Our Team"]
+    }
+  },
+  "Buttons": {
+  "loadMore": "Load More"
+},
+"TeamSection": {
+  "title": "Our Team",
+  "description": "Meet our experienced legal professionals..."
+},
+"TestimonialsSection": {
+  "title": "What our clients are saying",
+  "description": "Our clients range from individual investors, to local, international as well as fortune 500 companies."
+}
+
+
+
 }

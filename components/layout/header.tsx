@@ -8,6 +8,7 @@ import { useRouter as useNextRouter } from "next/navigation"
 import { Search, Menu, X, ChevronDown, Globe, Calendar } from "lucide-react"
 import { useTranslations } from 'next-intl';
 
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
@@ -15,6 +16,8 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("")
   const [currentLanguage, setCurrentLanguage] = useState("EN")
   const nextRouter = useNextRouter()
+  const [locale, setLocale] = useState('en')  
+
 
   // const toggleLanguage = () => {
   //   const newLocale = currentLanguage === "EN" ? "ar" : "en"
@@ -40,56 +43,55 @@ const toggleLanguage = () => {
 
   const navigationLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "About Us", href: "/about" , key: "about"},
     { name: "Practice", href: "/practice" },
   ]
 
   const navigationLinksAfterServices = [
-    { name: "Blog", href: "/blog" },
-    { name: "Our Team", href: "/team" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Blog", href: "/blog" , key: "blog"},
+    { name: "Our Team", href: "/team" , key: "team"},
+    { name: "Contact Us", href: "/contact" ,key: "contact"},
   ]
 
   const servicesDropdown = [
     // Column 1
     [
-      { name: "Legal Consultation Services", href: "/services/legal-consultation" },
-      { name: "Foreign Investment Services", href: "/services/foreign-investment" },
-      { name: "Contracts", href: "/services/contracts" },
-      { name: "Notarization", href: "/services/notarization" },
-      { name: "Insurance", href: "/services/insurance" },
+      { name: "Legal Consultation Services", href: "/services/legal-consultation", key: "legalConsultation" },
+      { name: "Foreign Investment Services", href: "/services/foreign-investment" , key: "foreignInvestment" },
+      { name: "Contracts", href: "/services/contracts" , key: "contracts" },
+      { name: "Notarization", href: "/services/notarization", key:"notarization"},
+      { name: "Insurance", href: "/services/insurance" ,key: "insurance"},
     ],
     // Column 2
     [
-      { name: "...and Defense in All Cases", href: "/services/defense-cases" },
-      { name: "Banks and Financial Institutions", href: "/services/banks-financial" },
-      { name: "Corporate Governance Services", href: "/services/corporate-governance" },
-      { name: "Companies Liquidation", href: "/services/companies-liquidation" },
-      { name: "Internal Regulations for Companies", href: "/services/internal-regulations" },
-    ],
+      { name: "...and Defense in All Cases", href: "/services/defense-cases", key: "defenseCases" },
+      { name: "Banks and Financial Institutions", href: "/services/banks-financial" , key: "banksFinancial" },
+      { name: "Corporate Governance Services", href: "/services/corporate-governance", key: "corporateGovernance" },
+      { name: "Companies Liquidation", href: "/services/companies-liquidation", key: "companiesLiquidation" },
+      { name: "Internal Regulations for Companies", href: "/services/internal-regulations", key: "internalRegulations" },],
     // Column 3
     [
-      { name: "Services for Companies and Institutions", href: "/services/companies-institutions" },
-      { name: "Arbitration", href: "/services/arbitration" },
-      { name: "Intellectual Property", href: "/services/intellectual-property" },
-      { name: "Corporate Restructuring and Reorganization", href: "/services/corporate-restructuring" },
+      { name: "Services for Companies and Institutions", href: "/services/companies-institutions", key: "companiesInstitutions" },
+      { name: "Arbitration", href: "/services/arbitration", key: "arbitration" },
+      { name: "Intellectual Property", href: "/services/intellectual-property", key: "intellectualProperty" },
+      { name: "Corporate Restructuring and Reorganization", href: "/services/corporate-restructuring" , key: "corporateRestructuring" },
     ],
     // Column 4
     [
-      { name: "Establishing National and Foreign Companies", href: "/services/establishing-companies" },
-      { name: "Commercial Agencies", href: "/services/commercial-agencies" },
-      { name: "Supporting Vision 2030", href: "/services/vision-2030" },
-      { name: "Estates", href: "/services/estates" },
+      { name: "Establishing National and Foreign Companies", href: "/services/establishing-companies" ,  key: "establishingCompanies" },
+      { name: "Commercial Agencies", href: "/services/commercial-agencies" , key: "commercialAgencies" },       
+      { name: "Supporting Vision 2030", href: "/services/vision-2030" , key: "vision2030" },
+      { name: "Estates", href: "/services/estates" , key: "estates" },
     ],
   ]
 
   const searchSuggestions = [
-    { keywords: ["home", "main", "index"], href: "/", name: "Home" },
-    { keywords: ["about", "company", "firm", "history"], href: "/about", name: "About Us" },
-    { keywords: ["practice", "areas", "law"], href: "/practice", name: "Practice Areas" },
-    { keywords: ["blog", "news", "articles"], href: "/blog", name: "Blog" },
-    { keywords: ["team", "lawyers", "attorneys", "staff"], href: "/team", name: "Our Team" },
-    { keywords: ["contact", "reach", "phone", "email"], href: "/contact", name: "Contact Us" },
+    { keywords: [...t('Search.suggestions.home', {locale: 'en'}), ...t('Search.suggestions.home', {locale: 'ar'})], href: "/", name: t("Navigation.home") },
+    { keywords: ["about", "company", "firm", "history"], href: "/about", name: t("Navigation.about") },
+    { keywords: ["practice", "areas", "law"], href: "/practice", name: t("Navigation.practice") },
+    { keywords: ["blog", "news", "articles"], href: "/blog", name: t("Navigation.blog") },
+    { keywords: ["team", "lawyers", "attorneys", "staff"], href: "/team", name: t("Navigation.team") },
+    { keywords: ["contact", "reach", "phone", "email"], href: "/contact", name: t("Navigation.contact") },
     { keywords: ["corporate", "business", "company"], href: "/services/corporate-law", name: "Corporate Law" },
     { keywords: ["criminal", "defense", "court"], href: "/services/criminal-defense", name: "Criminal Defense" },
     { keywords: ["family", "divorce", "custody"], href: "/services/family-law", name: "Family Law" },
@@ -101,6 +103,10 @@ const toggleLanguage = () => {
       name: "Personal Injury",
     },
   ]
+
+  
+
+
 
 
   const handleSearchClick = () => {
@@ -129,9 +135,11 @@ const toggleLanguage = () => {
   const getFilteredSuggestions = () => {
     if (!searchQuery.trim()) return []
     const query = searchQuery.toLowerCase().trim()
-    return searchSuggestions
-      .filter((suggestion) => suggestion.keywords.some((keyword) => keyword.includes(query) || query.includes(keyword)))
-      .slice(0, 5)
+    return searchSuggestions.filter(suggestion => 
+    suggestion.keywords.some(keyword => 
+      keyword.toLowerCase().includes(query)
+    )
+  ).slice(0, 5);
   }
 
   return (
@@ -152,18 +160,19 @@ const toggleLanguage = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center gap-x-8">
             {navigationLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-medium text-white hover:text-amber-200 transition-colors duration-200"
+                className={`font-medium text-white hover:text-amber-200 transition-colors duration-200 ${
+                  locale === 'ar' && link.name === 'Home' ? 'mr-6' : ''
+                  }`}
+
               >
                 
-                {t(`Navigation.${
-                  link.name === 'About Us' ? 'about' : 
-                  link.name.toLowerCase().replace(' ', '')
-                }`)}
+              {t(`Navigation.${link.key || link.name.toLowerCase().replace(' ', '')}`)}
+                 
               </Link>
             ))}
 
@@ -195,7 +204,8 @@ const toggleLanguage = () => {
                               onClick={() => setIsServicesOpen(false)}
                             >
                               {/* {service.name} */}
-                              {t(`Services.${service.name.toLowerCase().replace(/[^a-z]/g, '')}`)}
+                              {t(`Services.${service.key.toLowerCase()}`)}
+
                             </Link>
                           ))}
                         </div>
@@ -212,7 +222,8 @@ const toggleLanguage = () => {
                 href={link.href}
                 className="font-medium text-white hover:text-amber-200 transition-colors duration-200"
               >
-                {link.name}
+               {t(`Navigation.${link.key || link.name.toLowerCase().replace(' ', '')}`)}
+
               </Link>
             ))}
           </div>
@@ -228,20 +239,20 @@ const toggleLanguage = () => {
               </button>
 
               {isSearchOpen && (
-                <div className="absolute top-full right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                <div className={`absolute top-full ${locale === 'ar' ? 'left-0' : 'right-0'} mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50`}>
                   <form onSubmit={handleSearchSubmit} className="p-4">
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search pages, services, team..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#643F2E] focus:border-transparent"
+                      placeholder={t('Header.searchPlaceholder')}
+                       className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#643F2E] focus:border-transparent ${locale === 'ar' ? 'text-left' : 'text-right'}`}
                       autoFocus
                     />
                   </form>
 
                   {getFilteredSuggestions().length > 0 && (
-                    <div className="border-t border-gray-200">
+                    <div className={`border-t border-gray-200 ${locale === 'ar' ? 'text-right' : 'text-right'}`}>
                       {getFilteredSuggestions().map((suggestion, index) => (
                         <button
                           key={index}
@@ -276,7 +287,7 @@ const toggleLanguage = () => {
             >
               <Globe className="h-4 w-4" />
               <span className="text-sm font-medium">
-               {currentLanguage === 'EN' ? t('Language.english') : t('Language.arabic')}
+               {currentLanguage === 'EN' ? t('Language.arabic') : t('Language.english')}
                 </span>
             </button>
 
@@ -312,10 +323,7 @@ const toggleLanguage = () => {
                       className="block px-4 py-2 text-white hover:text-amber-200 hover:bg-opacity-20 hover:bg-white rounded-md transition-colors duration-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                     {t(`Navigation.${
-                  link.name === 'About Us' ? 'about' : 
-                  link.name.toLowerCase().replace(' ', '')
-                      }`)}
+                     {t(`Navigation.${link.key || link.name.toLowerCase().replace(' ', '')}`)}
                     </Link>
                   ))}
 
@@ -325,7 +333,7 @@ const toggleLanguage = () => {
                       onClick={() => setIsServicesOpen(!isServicesOpen)}
                       className="flex items-center justify-between w-full text-white hover:text-amber-200 font-medium"
                     >
-                      Services
+                     {t('Navigation.services')}
                       <ChevronDown className="h-4 w-4" />
                     </button>
 
@@ -343,7 +351,8 @@ const toggleLanguage = () => {
                                   setIsServicesOpen(false)
                                 }}
                               >
-                                {service.name}
+                               {t(`Services.${service.key.toLowerCase()}`)}
+
                               </Link>
                             ))}
                           </div>
@@ -359,7 +368,9 @@ const toggleLanguage = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <Calendar className="h-4 w-4" />
-                    <span className="font-medium">Book a Meeting</span>
+                    <span className="font-medium">
+                      {t('Header.bookMeeting')}
+                    </span>
                   </Link>
                 </div>
               </div>
