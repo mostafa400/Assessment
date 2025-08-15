@@ -40,33 +40,76 @@
     "english": "English",
     "arabic": "Arabic"
   },
-  "Footer": {
-    "contactUs": "Contact Us",
-    "address": "Address",
-    "phone": "Phone",
-    "email": "Email",
-    "followUs": "Follow Us"
-  },
-  
   "Search": {
     "suggestions": {
       "home": ["Home", "Homepage", "Main Page"],
       "about": ["About Us", "About", "Company"],
-      "team": ["Team", "Lawyers", "Our Team"]
+      "practice": ["Practice", "Areas", "Law"],
+      "blog": ["Blog", "News", "Articles"],
+      "team": ["Team", "Lawyers", "Attorneys", "Staff"],
+      "contact": ["Contact", "Reach", "Phone", "Email"],
+      "legalConsultation": ["Legal Consultation", "Advice"],
+      "foreignInvestment": ["Foreign Investment", "FDI"],
+      "contracts": ["Contracts", "Agreements"],
+      "notarization": ["Notarization", "Notary"],
+      "insurance": ["Insurance", "Coverage"],
+      "defenseCases": ["Defense", "Cases", "Court"],
+      "banksFinancial": ["Banks", "Financial Institutions"],
+      "corporateGovernance": ["Corporate Governance", "Compliance"],
+      "companiesLiquidation": ["Companies Liquidation", "Winding Up"],
+      "internalRegulations": ["Internal Regulations", "Bylaws"],
+      "companiesInstitutions": [
+        "Services for Companies",
+        "Business Services"
+      ],
+      "arbitration": ["Arbitration", "Mediation"],
+      "intellectualProperty": ["Intellectual Property", "IP", "Trademarks"],
+      "corporateRestructuring": [
+        "Corporate Restructuring",
+        "Reorganization"
+      ],
+      "establishingCompanies": ["Establishing Companies", "Company Formation"],
+      "commercialAgencies": ["Commercial Agencies", "Franchise"],
+      "vision2030": ["Vision 2030", "Saudi Vision"],
+      "estates": ["Estates", "Real Estate", "Property"]
     }
   },
   "Buttons": {
-  "loadMore": "Load More"
-},
-"TeamSection": {
-  "title": "Our Team",
-  "description": "Meet our experienced legal professionals..."
-},
-"TestimonialsSection": {
-  "title": "What our clients are saying",
-  "description": "Our clients range from individual investors, to local, international as well as fortune 500 companies."
-}
+    "loadMore": "Load More"
+  },
+  "TeamSection": {
+    "title": "Our Team",
+    "description": "Meet our experienced legal professionals..."
+  },
+  "TestimonialsSection": {
+    "title": "What our clients are saying",
+    "description": "Our clients range from individual investors, to local, international as well as fortune 500 companies."
+  },
+  "Footer": {
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "subscribe": "Subscribe",
+    "submitting": "Submitting...", 
+    "contacts": "Contacts",
+    "copyright": "© {year}. All rights reserved.",
+    "ourStrategy": "Our Strategy",
+    "ourAdvantages": "Our Advantages",
+    "socialResponsibility": "Social Responsibility"
+  },
+  "FormMessages": {
+    "success": "Subscription successful!",
+    "error": "Subscription failed. Please try again.",
+    "duplicateEmail": "Email already subscribed"
+  },
+  "FormErrors": {
+    "nameRequired": "Name is required",
+    "nameTooShort": "Name must be at least 2 characters",
+    "invalidEmail": "Please enter a valid email",
+    "emailRequired": "Email is required"
+  },
 
-
+   "lawfirm": {
+    "name": "Law Firm",
+    "description": "A leading law firm providing comprehensive legal services."}
 
 }

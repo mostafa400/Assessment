@@ -1,71 +1,33 @@
 "use client"
 
-import { useState, useEffect ,useCallback} from "react"
-
-import { useParams } from "next/navigation"
+import { useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import useSWR from 'swr';
 import { useTranslations } from 'next-intl';
 
+// Define the type for a slide
+interface Slide {
+  id: number;
+  title: string;
+  Description: string;
+  image: {
+    url: string;
+    formats?: {
+      small?: {
+        url: string;
+      }
+    }
+  }[];
+}
 
-// const slides = [
-//   {
-//     id: 1,
-//     title: "Expert Legal Consultation",
-//     description:
-//       "Providing comprehensive legal advice and consultation services with over 20 years of experience in corporate law, litigation, and legal compliance.",
-//   },
-//   {
-//     id: 2,
-//     title: "Corporate Law Excellence",
-//     description:
-//       "Specialized in corporate governance, mergers and acquisitions, and business restructuring to help your company navigate complex legal landscapes.",
-//   },
-//   {
-//     id: 3,
-//     title: "International Legal Services",
-//     description:
-//       "Cross-border legal expertise for multinational corporations, foreign investments, and international trade agreements with proven success.",
-//   },
-//   {
-//     id: 4,
-//     title: "Litigation & Defense",
-//     description:
-//       "Strong courtroom representation and strategic defense in commercial disputes, contract negotiations, and regulatory compliance matters.",
-//   },
-//   {
-//     id: 5,
-//     title: "Vision 2030 Compliance",
-//     description:
-//       "Supporting businesses in aligning with Saudi Arabia's Vision 2030 initiatives through specialized legal guidance and regulatory compliance.",
-//   },
-// ]
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ slides }: { slides: Slide[] }) {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const params = useParams(); // 2. Get URL params
-  const locale = params.locale;
-
   const t = useTranslations()
-  
-
-  const fetcher = (url: string) => fetch(url).then(res => res.json());
-
-  
-  const { data, error, isLoading } = useSWR(() => locale ? `/${locale}/api/hero-slides` : null, fetcher);
-
-
-
-  const slides = data?.data || [];
-  console.log("Strapi Data Received:", JSON.stringify(slides, null, 2)); // This will print the data nicely formatted
-
 
   const nextSlide = useCallback(() => {
     setCurrentSlide(prev => (prev + 1) % slides.length);
   }, [slides.length]);
-
-  
 
   const prevSlide = useCallback(() => {
     setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
@@ -76,35 +38,26 @@ export default function HeroCarousel() {
       const timer = setInterval(nextSlide, 5000);
       return () => clearInterval(timer);
     }
-    console.log('Fetched slides:', slides);
-     console.log('Current slide data:', slides[currentSlide]);
   }, [nextSlide, slides.length]);
-
-  // const nextSlide = () => {
-  //   setCurrentSlide((prev) => (prev + 1) % slides.length)
-  // }
-
-  // const prevSlide = () => {
-  //   setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  // }
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
   }
 
- const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
-  
-  // This is a safer way to access nested properties
-  const image = slides[currentSlide]?.image?.[0];
-  const imageUrlPath = image?.formats?.small?.url || image?.url; // Use small if available
+  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
 
-  
-  const imageUrl = imageUrlPath 
-    ? `${strapiUrl}${imageUrlPath}` 
-    : '/placeholder.jpg'; 
-  
- if (error) return <div>Failed to load</div>;
-  if (isLoading) return <div>Loading...</div>;
+  const image = slides[currentSlide]?.image?.[0];
+  const imageUrlPath = image?.formats?.small?.url || image?.url;
+
+  const imageUrl = imageUrlPath
+    ? `${strapiUrl}${imageUrlPath}`
+    : '/placeholder.jpg';
+
+  // 2. Remove the loading and error states, as data is now pre-fetched
+  if (!slides || slides.length === 0) {
+    return <div>No slides available</div>;
+  }
+
   return (
     <div className="relative h-full flex items-center">
       {/* Left Navigation Arrow */}

@@ -19,14 +19,7 @@ export default function Header() {
   const [locale, setLocale] = useState('en')  
 
 
-  // const toggleLanguage = () => {
-  //   const newLocale = currentLanguage === "EN" ? "ar" : "en"
-  //   setCurrentLanguage(newLocale === "ar" ? "AR" : "EN")
-  //   // Refresh the page to apply the new locale
-  //   window.location.href = `/${newLocale}${window.location.pathname.replace(/^\/(en|ar)/, '')}`
-  // }
 
-  // Add this useEffect at the top of the component
 useEffect(() => {
   const locale = window.location.pathname.split('/')[1] || 'en'
   setCurrentLanguage(locale === 'ar' ? 'AR' : 'EN')
@@ -43,66 +36,131 @@ const toggleLanguage = () => {
 
   const navigationLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" , key: "about"},
-    { name: "Practice", href: "/practice" },
+    { name: "About Us", href: "/#" , key: "about"},
+    { name: "Practice", href: "/#" },
   ]
 
   const navigationLinksAfterServices = [
-    { name: "Blog", href: "/blog" , key: "blog"},
-    { name: "Our Team", href: "/team" , key: "team"},
-    { name: "Contact Us", href: "/contact" ,key: "contact"},
+    { name: "Blog", href: "/#" , key: "blog"},
+    { name: "Our Team", href: "/#" , key: "team"},
+    { name: "Contact Us", href: "/#" ,key: "contact"},
   ]
 
   const servicesDropdown = [
     // Column 1
     [
-      { name: "Legal Consultation Services", href: "/services/legal-consultation", key: "legalConsultation" },
-      { name: "Foreign Investment Services", href: "/services/foreign-investment" , key: "foreignInvestment" },
-      { name: "Contracts", href: "/services/contracts" , key: "contracts" },
-      { name: "Notarization", href: "/services/notarization", key:"notarization"},
-      { name: "Insurance", href: "/services/insurance" ,key: "insurance"},
+      { name: "Legal Consultation Services", href: "/#", key: "legalConsultation" },
+      { name: "Foreign Investment Services", href: "/#" , key: "foreignInvestment" },
+      { name: "Contracts", href: "/#" , key: "contracts" },
+      { name: "Notarization", href: "/#", key:"notarization"},
+      { name: "Insurance", href: "/#" ,key: "insurance"},
     ],
     // Column 2
     [
-      { name: "...and Defense in All Cases", href: "/services/defense-cases", key: "defenseCases" },
-      { name: "Banks and Financial Institutions", href: "/services/banks-financial" , key: "banksFinancial" },
-      { name: "Corporate Governance Services", href: "/services/corporate-governance", key: "corporateGovernance" },
-      { name: "Companies Liquidation", href: "/services/companies-liquidation", key: "companiesLiquidation" },
-      { name: "Internal Regulations for Companies", href: "/services/internal-regulations", key: "internalRegulations" },],
+      { name: "...and Defense in All Cases", href: "/#", key: "defenseCases" },
+      { name: "Banks and Financial Institutions", href: "/#" , key: "banksFinancial" },
+      { name: "Corporate Governance Services", href: "/#", key: "corporateGovernance" },
+      { name: "Companies Liquidation", href: "/#", key: "companiesLiquidation" },
+      { name: "Internal Regulations for Companies", href: "/#", key: "internalRegulations" },],
     // Column 3
     [
-      { name: "Services for Companies and Institutions", href: "/services/companies-institutions", key: "companiesInstitutions" },
-      { name: "Arbitration", href: "/services/arbitration", key: "arbitration" },
-      { name: "Intellectual Property", href: "/services/intellectual-property", key: "intellectualProperty" },
-      { name: "Corporate Restructuring and Reorganization", href: "/services/corporate-restructuring" , key: "corporateRestructuring" },
+      { name: "Services for Companies and Institutions", href: "/#", key: "companiesInstitutions" },
+      { name: "Arbitration", href: "/#", key: "arbitration" },
+      { name: "Intellectual Property", href: "/#", key: "intellectualProperty" },
+      { name: "Corporate Restructuring and Reorganization", href: "/#" , key: "corporateRestructuring" },
     ],
     // Column 4
     [
-      { name: "Establishing National and Foreign Companies", href: "/services/establishing-companies" ,  key: "establishingCompanies" },
-      { name: "Commercial Agencies", href: "/services/commercial-agencies" , key: "commercialAgencies" },       
-      { name: "Supporting Vision 2030", href: "/services/vision-2030" , key: "vision2030" },
-      { name: "Estates", href: "/services/estates" , key: "estates" },
+      { name: "Establishing National and Foreign Companies", href: "/#" ,  key: "establishingCompanies" },
+      { name: "Commercial Agencies", href: "/#" , key: "commercialAgencies" },       
+      { name: "Supporting Vision 2030", href: "/#" , key: "vision2030" },
+      { name: "Estates", href: "/#" , key: "estates" },
     ],
   ]
 
-  const searchSuggestions = [
-    { keywords: [...t('Search.suggestions.home', {locale: 'en'}), ...t('Search.suggestions.home', {locale: 'ar'})], href: "/", name: t("Navigation.home") },
-    { keywords: ["about", "company", "firm", "history"], href: "/about", name: t("Navigation.about") },
-    { keywords: ["practice", "areas", "law"], href: "/practice", name: t("Navigation.practice") },
-    { keywords: ["blog", "news", "articles"], href: "/blog", name: t("Navigation.blog") },
-    { keywords: ["team", "lawyers", "attorneys", "staff"], href: "/team", name: t("Navigation.team") },
-    { keywords: ["contact", "reach", "phone", "email"], href: "/contact", name: t("Navigation.contact") },
-    { keywords: ["corporate", "business", "company"], href: "/services/corporate-law", name: "Corporate Law" },
-    { keywords: ["criminal", "defense", "court"], href: "/services/criminal-defense", name: "Criminal Defense" },
-    { keywords: ["family", "divorce", "custody"], href: "/services/family-law", name: "Family Law" },
-    { keywords: ["real estate", "property", "housing"], href: "/services/real-estate", name: "Real Estate Law" },
-    { keywords: ["immigration", "visa", "citizenship"], href: "/services/immigration", name: "Immigration Law" },
-    {
-      keywords: ["personal injury", "accident", "compensation"],
-      href: "/services/personal-injury",
-      name: "Personal Injury",
-    },
-  ]
+const searchSuggestions = [
+  { 
+    keywords: [
+      "home", "main", "index",
+      "الرئيسية", "الصفحة الرئيسية", "البداية"
+    ], 
+    href: "/#", 
+    name: t("Navigation.home") 
+  },
+  { 
+    keywords: [
+      "about", "company", "firm", "history",
+      "من نحن", "عن", "شركة", "تاريخ"
+    ],
+    href: "/#", 
+    name: t("Navigation.about") 
+  },
+  { 
+    keywords: [
+      "practice", "areas", "law",
+      "ممارسة", "مجالات", "قانون"
+    ],
+    href: "/#", 
+    name: t("Navigation.practice") 
+  },
+  { 
+    keywords: [
+      "blog", "news", "articles",
+      "مدونة", "أخبار", "مقالات"
+    ],
+    href: "/#", 
+    name: t("Navigation.blog") 
+  },
+  { 
+    keywords: [
+      "team", "lawyers", "attorneys", "staff",
+      "فريق", "محامون", "محامين", "موظفين"
+    ],
+    href: "/#", 
+    name: t("Navigation.team") 
+  },
+  { 
+    keywords: [
+      "contact", "reach", "phone", "email",
+      "اتصال", "تواصل", "هاتف", "بريد"
+    ],
+    href: "/#", 
+    name: t("Navigation.contact") 
+  },
+  { 
+    keywords: [
+      "legal", "consultation", "advice",
+      "قانوني", "استشارة", "نصيحة"
+    ],
+    href: "/#", 
+    name: t("Services.legalconsultation") 
+  },
+  { 
+    keywords: [
+      "foreign", "investment",
+      "استثمار", "أجنبي"
+    ],
+    href: "/#", 
+    name: t("Services.foreigninvestment") 
+  },
+  { 
+    keywords: [
+      "contracts", "agreements",
+      "عقود", "اتفاقيات"
+    ],
+    href: "/#", 
+    name: t("Services.contracts") 
+  },
+  { 
+    keywords: [
+      "notarization", "official",
+      "توثيق", "رسمي"
+    ],
+    href: "/#", 
+    name: t("Services.notarization") 
+  }
+];
+
 
   
 
@@ -132,35 +190,48 @@ const toggleLanguage = () => {
     }
   }
 
+
+
   const getFilteredSuggestions = () => {
-    if (!searchQuery.trim()) return []
-    const query = searchQuery.toLowerCase().trim()
-    return searchSuggestions.filter(suggestion => 
+  if (!searchQuery.trim()) return [];
+  
+  // Normalize Arabic text and remove diacritics
+  const normalizeArabic = (text: string) => 
+    text.normalize('NFKD').replace(/[\u064B-\u065F]/g, '');
+    
+  const query = normalizeArabic(searchQuery.toLowerCase().trim());
+  
+  return searchSuggestions.filter(suggestion => 
     suggestion.keywords.some(keyword => 
-      keyword.toLowerCase().includes(query)
+      normalizeArabic(keyword.toLowerCase()).includes(query)
     )
   ).slice(0, 5);
-  }
+}
+
+
+
 
   return (
     <header className="w-full sticky top-0 z-50 bg-transparent">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+          <div className={`flex-shrink-0 ${locale === 'ar' ? 'ml-4' : 'mr-4'}`}>
+
+            <Link href="/" className={`flex items-center ${locale === 'ar' ? 'flex-row-reverse' : ''}`}>
               <div
                 className="w-10 h-10 rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: "#643F2E" }}
               >
-                <span className="font-bold text-xl text-white">L</span>
+                <span className="font-bold text-xl text-white ">L</span>
               </div>
               <span className="ml-2 text-xl font-bold hidden sm:block text-white">LawFirm</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-x-8">
+          <div className={`hidden lg:flex items-center ${locale === 'ar' ? 'gap-x-8 flex-row-reverse' : 'gap-x-8'}`}>
+
             {navigationLinks.map((link) => (
               <Link
                 key={link.name}
@@ -229,7 +300,8 @@ const toggleLanguage = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-4">
+          <div className={`flex items-center ${locale === 'ar' ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+
             <div className="relative">
               <button
                 onClick={handleSearchClick}
@@ -246,7 +318,9 @@ const toggleLanguage = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={t('Header.searchPlaceholder')}
-                       className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#643F2E] focus:border-transparent ${locale === 'ar' ? 'text-left' : 'text-right'}`}
+                       className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#643F2E] focus:border-transparent ${locale === 'ar' ? 'text-left' : 'text-left'}`}
+                       dir="auto"
+                       lang={locale}
                       autoFocus
                     />
                   </form>
@@ -273,23 +347,24 @@ const toggleLanguage = () => {
             </div>
 
             <Link
-              href="/book-meeting"
-              className="hidden sm:flex items-center space-x-2 px-4 py-2 rounded-md text-white transition-colors duration-200 hover:opacity-90"
+              href="/#"
+              className={`hidden sm:flex items-center ${locale === 'ar' ? 'space-x-reverse space-x-2' : 'space-x-2'} px-4 py-2 rounded-md text-white transition-colors duration-200 hover:opacity-90`}
+
               style={{ backgroundColor: "#643F2E" }}
             >
               <Calendar className="h-4 w-4" />
               <span className="font-medium">{t('Header.bookMeeting')}</span>
             </Link>
+<button
+  onClick={toggleLanguage}
+  className={`flex items-center ${locale === 'ar' ? 'space-x-reverse space-x-1' : 'space-x-1'} px-3 py-1 border border-white text-white rounded-md transition-colors duration-200 hover:bg-white hover:text-gray-900 min-w-[60px]`}
+>
+  <Globe className="h-4 w-4" />
+  <span className="text-sm font-medium text-center w-full">
+    {currentLanguage === 'AR' ? 'EN' : 'AR'}
+  </span>
+</button>
 
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1 px-3 py-1 border border-white text-white rounded-md transition-colors duration-200 hover:bg-white hover:text-gray-900"
-            >
-              <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">
-               {currentLanguage === 'EN' ? t('Language.arabic') : t('Language.english')}
-                </span>
-            </button>
 
             {/* Mobile Menu Button */}
             <button

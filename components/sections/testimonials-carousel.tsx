@@ -88,18 +88,18 @@ export default function TestimonialsCarousel() {
         </div>
 
         {/* Navigation with RTL support */}
-        <div className="flex justify-end rtl:justify-start space-x-4">
+        <div className="flex justify-end rtl:justify-start space-x-5 ">
           <button
             onClick={prevSlide}
-            className="w-12 h-12 rounded-full bg-gray-600 hover:bg-gray-500 flex items-center justify-center transition-colors duration-200"
+            className="w-12 h-12 rounded-full bg-gray-600 hover:bg-gray-500 flex items-center justify-center transition-colors duration-200 "
           >
-            <ChevronRight className="w-6 h-6 text-white" />
+            <ChevronLeft className="w-6 h-6 text-white" />
           </button>
           <button
             onClick={nextSlide}
             className="w-12 h-12 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-colors duration-200"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-800" />
+            <ChevronRight className="w-6 h-6 text-gray-800" />
           </button>
         </div>
       </div>

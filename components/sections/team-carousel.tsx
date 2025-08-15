@@ -74,14 +74,14 @@ export default function TeamCarousel() {
             className="absolute start-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow"
             style={{ color: "#643F2E" }}
           >
-            <ChevronRight size={24} />
+            <ChevronLeft size={24} />
           </button>
           <button
             onClick={nextSlide}
             className="absolute end-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow"
             style={{ color: "#643F2E" }}
           >
-            <ChevronLeft size={24} />
+            <ChevronRight size={24} />
           </button>
 
           {/* RENDER ONLY VISIBLE ITEMS */}

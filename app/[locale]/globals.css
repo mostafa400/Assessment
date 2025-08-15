@@ -84,10 +84,16 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  @apply bg-background text-foreground;
 }
+
+[dir="rtl"] {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  /* Keep your existing RTL overrides */
+}
+
 
 [dir="rtl"] {
   /* RTL-specific overrides */
